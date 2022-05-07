@@ -16,7 +16,7 @@ class Evaluacion
 	public function evaluar()
 	{
 		for ($i=0; $i < strlen($this->pregunta); $i++) { 
-			if ($this->respuesta[$i] == $this->pregunta[$i]) {
+			if (!empty($this->respuesta[$i]) && $this->respuesta[$i] == $this->pregunta[$i]) {
 				$this->letrasAcertadas++;
 			}
 		}
@@ -33,5 +33,20 @@ class Evaluacion
 		$html .= "<h4>Letras acertadas: <span style='color:green'>{$this->letrasAcertadas}</span></h4>";
 		$html .= "<h3><span style='color:blue'>$this->txtResultado</span></h3>";
 		return $html;
+	}
+
+	public function getPregunta() : string
+	{
+		return $this->pregunta;
+	}
+
+	public function getTxtResultado() : string
+	{
+		return $this->txtResultado;
+	}
+
+	public function getLetrasAcertadas() : string
+	{
+		return $this->letrasAcertadas;
 	}
 }

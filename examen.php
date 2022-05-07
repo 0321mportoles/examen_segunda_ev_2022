@@ -13,6 +13,7 @@ $nImagen = $_SESSION['nImagen'] ?? 1;
 if (isset($_POST['submit']) && $_POST['submit'] == 'Evaluar') {
     $evaluacion = new Evaluacion($_POST['respuestaCorrecta'], implode('', $_POST['respuesta']));
     $evaluacion->evaluar();
+    $_SESSION['respuestas'][] = serialize($evaluacion);
     if ($nImagen >= count($imagenes)) {
         header('Location: resultado.php'); exit();
     }
@@ -53,6 +54,13 @@ $preguntaHtml = Plantilla::plantillaPregunta($idioma, $imagen);
             </fieldset>
         </fieldset>
         <?= $evaluacion ?>
+        <!--
+            Me he descargado un código JS interesante de stackoverflow que
+            permite cambiar de input mientras escribes para que sea más
+            cómodo escribir
+        -->
+        <script type="text/javascript" src="js/funciones.js"></script>
     </body>
 </html>
+
 
