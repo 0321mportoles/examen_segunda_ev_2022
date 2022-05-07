@@ -51,3 +51,7 @@ input[type=text]{
     padding:5px;
     margin:5px
 }
+
+input.respuesta[type=text]{
+    width: 30px;
+}
