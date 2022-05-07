@@ -67,7 +67,8 @@ class Directorio
      */
     public function add_dir ($directorio){
         $created = false;
-        if (@mkdir("$this->ruta/$directorio", 0777)) {
+        $separador = DIRECTORY_SEPARATOR;
+        if (@mkdir("$this->ruta$separador$directorio", 0777)) {
             $this->actualiza_contenido();
             $created = true;
         }
@@ -82,7 +83,8 @@ class Directorio
         var_dump($directorio);
         $deleted = false;
         //Cuidado, el dir tiene que estar vacío
-        if (rmdir("$this->ruta/$directorio")) {
+        $separador = DIRECTORY_SEPARATOR;
+        if (rmdir("$this->ruta$separador$directorio")) {
             $this->actualiza_contenido();
             $deleted = true;
         }
