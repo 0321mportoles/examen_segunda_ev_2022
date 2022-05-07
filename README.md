@@ -73,7 +73,7 @@ Una vez hecho todo esto, ya podremos hacer push en nuestro repositorio.
 
 ### Si habiamos clonado con HTTP
 
-Si usamos el método de clave pública/privada habrá que cambiar el remote
+Si usamos el método de clave pública/privada habrá que cambiar el remote si habíamos clonado mediante HTTP
 
 	git remote set-url origin https://github.org/repo.git
 
