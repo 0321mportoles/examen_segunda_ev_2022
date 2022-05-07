@@ -1,14 +1,8 @@
 <?php
-function carga($clase){
-    require "./class/$clase.php";
-}
-spl_autoload_register("carga");
 
-session_start();
-session_destroy();
-session_start();
+require_once 'funciones.php';
 
-
+iniciarSesion(true);
 
 //Inicializamos varialbes
 $idiomas = new Directorio();
@@ -38,14 +32,12 @@ switch ($opcion){
 
         $contenido_imagenes = new Directorio("./idiomas/$idioma");
         $imagenes = $contenido_imagenes->getContenidoDir();
-        $imagenes= array_flip($imagenes);
-        $imagenes = array_rand($imagenes, 5);
-        $imagenes = serialize($imagenes);
+        shuffle($imagenes);
+        $imagenes = serialize(array_slice($imagenes, 0, 3));
         $_SESSION['imagenes'] = $imagenes;
+
         header ("location:examen.php");
         exit();
-
-
 }
 
 if ($idiomas->vacio()) {
