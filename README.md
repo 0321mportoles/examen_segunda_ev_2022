@@ -75,5 +75,5 @@ Una vez hecho todo esto, ya podremos hacer push en nuestro repositorio.
 
 Si usamos el método de clave pública/privada habrá que cambiar el remote si habíamos clonado mediante HTTP
 
-	git remote set-url origin https://github.org/repo.git
+	git remote set-url origin git@github.com:0321mportoles/examen_segunda_ev_2022.git
 
