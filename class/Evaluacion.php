@@ -28,11 +28,25 @@ class Evaluacion
 
 	public function __toString () : string
 	{
+
+		$color = $this->getColorAcierto();
+
 		$html = "<h4>Pregunta: <span style='color:green'>$this->pregunta</span></h4>";
 		$html .= "<h4>Respuesta: <span style='color:green'>$this->respuesta</span></h4>";
 		$html .= "<h4>Letras acertadas: <span style='color:green'>{$this->letrasAcertadas}</span></h4>";
-		$html .= "<h3><span style='color:blue'>$this->txtResultado</span></h3>";
+		$html .= "<h3><span style='color:$color'>$this->txtResultado</span></h3>";
 		return $html;
+	}
+
+	private function getColorAcierto(): string
+	{
+		if ($this->txtResultado == "Acierto") {
+			return 'green';
+		}
+
+		return 'red';
+
+		// return ($this->txtResultado == "Acierto")? 'green': 'red';
 	}
 
 	public function getPregunta() : string
