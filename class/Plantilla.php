@@ -7,9 +7,10 @@ class Plantilla
 		$nombreImagen = extraeNombreImagenDesdeArchivo($img);
 
 		$html = '';
-		$html .= "<img src='./idiomas/$idioma/$img' alt='' /><br>";
+		$html .= "<img src='./idiomas/$idioma/$img' alt='$nombreImagen' /><br>";
 
-		for ($i=0; $i < strlen($nombreImagen); $i++) { 
+		for ($i=0; $i < strlen($nombreImagen); $i++) {
+			// Usamos la propiedad maxlength para evitar que se pueda poner mas de 1 letra en cada input
 			$html .= "<input class='respuesta' type='text' name='respuesta[]' maxlength='1' style='' />";
 		}
 

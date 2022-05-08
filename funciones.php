@@ -11,9 +11,9 @@
 
 	autoload();
 
-	function iniciarSesion($destroyIfInit = false) {
+	function iniciarSesion($destroy = false) {
 		session_start();
-		if ($destroyIfInit) {
+		if ($destroy) {
 			session_destroy();
 			session_start();
 		}

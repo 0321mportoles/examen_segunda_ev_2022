@@ -11,7 +11,14 @@ $evaluacion = '';
 $nImagen = $_SESSION['nImagen'] ?? 1;
 
 if (isset($_POST['submit']) && $_POST['submit'] == 'Evaluar') {
-    $evaluacion = new Evaluacion($_POST['respuestaCorrecta'], implode('', $_POST['respuesta']));
+    $respuestaCorrecta = filter_input(INPUT_POST, "respuestaCorrecta", FILTER_SANITIZE_STRING);
+    $respuesta = filter_input(INPUT_POST, "respuesta", FILTER_SANITIZE_STRING, FILTER_REQUIRE_ARRAY);
+    
+    $evaluacion = new Evaluacion($respuestaCorrecta, implode('', $respuesta));
+    // Si me piden guardar la respuesta correcta en session para evitar ponerlo 
+    // en un input hidden, la recuperariamos aqui
+    // $evaluacion = new Evaluacion($_SESSION['rCorrecta'], implode('', $respuesta));
+
     $evaluacion->evaluar();
     $_SESSION['respuestas'][] = serialize($evaluacion);
     if ($nImagen >= count($imagenes)) {
@@ -21,6 +28,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'Evaluar') {
 }
 
 $imagen = $imagenes[$nImagen-1];
+
+// Si nos pidieran guardar la respuesta correcta en session
+// $_SESSION['rCorrecta'] = extraeNombreImagenDesdeArchivo($imagen);
 $preguntaHtml = Plantilla::plantillaPregunta($idioma, $imagen);
 
 
@@ -51,9 +61,9 @@ $preguntaHtml = Plantilla::plantillaPregunta($idioma, $imagen);
                         <br><input type="submit" name="submit" value="Evaluar">
                     </form>
                 </div>
+                <?= $evaluacion ?>
             </fieldset>
         </fieldset>
-        <?= $evaluacion ?>
         <!--
             Me he descargado un código JS interesante de stackoverflow que
             permite cambiar de input mientras escribes para que sea más

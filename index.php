@@ -32,7 +32,10 @@ switch ($opcion){
 
         $contenido_imagenes = new Directorio("./idiomas/$idioma");
         $imagenes = $contenido_imagenes->getContenidoDir();
+        //Mezclamos el arary de imagenes aleatoriamente
         shuffle($imagenes);
+
+        //Extraemos 3 elementos del array de imagenes y lo serializamos para guardarlo en sesion
         $imagenes = serialize(array_slice($imagenes, 0, 3));
         $_SESSION['imagenes'] = $imagenes;
 
