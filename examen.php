@@ -21,6 +21,12 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'Evaluar') {
 
     $evaluacion->evaluar();
     $_SESSION['respuestas'][] = serialize($evaluacion);
+
+    /**
+     * controlo el fin de ejecucion en funcion del tamaño del array de imagenes,
+     * por lo que si no hay tantas imagenes como el limite que he marcado en 
+     * index.php la app seguirá funcionando
+     */
     if ($nImagen >= count($imagenes)) {
         header('Location: resultado.php'); exit();
     }
